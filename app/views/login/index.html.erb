@@ -7,17 +7,50 @@
 	</head>
 	<body>
 		<div class="container-fluid">
+			
 			<header class="row">
-				<div class="col-md-3 col-sm-3">
-					<blockquote>Seven Stone
-						<small>Task management made easy</small>
-					</blockquote>
-				</div>
-				<div class="col-md-9 col-sm-9">
-					<div
-				</div>
+					<div class="col-md-7  col-sm-7">
+						<blockquote>Seven Stone
+							<small>Task management made easy</small>
+						</blockquote>
+					</div>
+					<%= form_tag({:controller => 'login',:action => "signin"},:method=>:post, remote: true) %>
+					<!-- <%= form_for(@login, remote: true) do |log| %> -->
+					<div class="col-md-2 col-sm-2">
+						<label>Email address</label>
+						<!-- <%= log.text_field :email,:class=>'form-control input-sm', :placeholder=>'someone@sevenstone.com', :size=> 50, :required=> true, :autofocus=>true %> -->
+						<input type="text" id="idEmail" name="idEmail" class="form-control input-sm" required="required" placeholder="someone@sevenstone.com"/>
+	 				</div>
+	 				<div class="col-md-2 col-sm-2">
+						<label>Password</label>
+						<!-- <%= log.password_field :password,:class=>'form-control input-sm', :placeholder=>'password', :required=> true %> -->
+						<input type="password" id="idPassword" name="idPassword" class="form-control input-sm" required="required" placeholder="password"/>
+						<p class="small"><a href="#">Trouble in log in?</a></p>
+	 				</div>
+					<div class="col-md-1 col-sm-1">
+						<label>&nbsp;</label>
+						<!-- <%= log.submit :id=>"idSubmit", :class=>"btn btn-primary input-sm form-control",:value=>"Log In"  %> -->
+						<button type="submit" class="btn btn-primary input-sm form-control" name="idSubmit"  id="idSubmit">Log In</button>
+					</div>
+					<% end %>
 			</header>
 			
+			<section class="row">			
+				<div class="col-md-offset-2 col-sm-offset-2 col-md-5 col-sm-5">
+					<img  src="/assets/seven_stone_main_image.jpg" alt="Seven Stone" />
+				</div>
+				<div class="col-md-5 col-sm-5 center-block">
+					<div class="row">
+						<h3 class="glyphicon glyphicon-asterisk"> Easy</h3>
+					</div>
+					<div class="row">
+						<h3 class="glyphicon glyphicon-asterisk"> Efficient</h3>
+					</div>
+					<div class="row">
+						<h3 class="glyphicon glyphicon-asterisk"> Earnout</h3>
+					</div>
+				</div>
+			</section>
 		</div>
 		<!-- javascript file -->
 		<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script>

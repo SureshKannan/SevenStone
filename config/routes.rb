@@ -53,11 +53,20 @@ SevenStone::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  
+   
   controller :login do
     get "login", to: "login#index"
     get "login/index"
-    post "login/index"
+    post "login/index", to: "login#signin"
+    get "login" 
     
+    get "logins", to: "login#index"
+    post "logins", to: "login#signin"
+  end
+  controller :role do
+    get "roles", to: "roles#index"
+    get "roles/index"
   end
 
 end
