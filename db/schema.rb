@@ -30,9 +30,10 @@ ActiveRecord::Schema.define(version: 20140712233707) do
   create_table "users", force: true do |t|
     t.string   "firstname",  limit: 100, null: false
     t.string   "lastname",   limit: 100, null: false
-    t.string   "status",     limit: 1
+    t.string   "email",                  null: false
     t.integer  "group_id"
     t.integer  "role_id"
+    t.string   "status",     limit: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
