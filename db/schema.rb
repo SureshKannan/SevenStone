@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715111224) do
+ActiveRecord::Schema.define(version: 20140715140121) do
 
   create_table "departments", force: true do |t|
     t.string   "name"
@@ -26,9 +26,21 @@ ActiveRecord::Schema.define(version: 20140715111224) do
     t.datetime "updated_at"
   end
 
+  create_table "priorities", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "roles", force: true do |t|
     t.string   "name",       limit: 100, null: false
     t.string   "status",     limit: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "statuses", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
