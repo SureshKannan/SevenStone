@@ -68,5 +68,13 @@ SevenStone::Application.routes.draw do
     get "roles", to: "roles#index"
     get "roles/index"
   end
+  
+    controller :department do
+    get "department/list"
+    get "department/index"
+    get "department/create"
+    get "department/update"
+    get "department/destroy"
+  end
 
 end
