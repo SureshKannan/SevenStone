@@ -305,3 +305,105 @@ function createPriority()
 				$('#LoadRecordsButton').click();
 
 }
+
+function createCategory()
+{
+	//alert("Jtable");
+	$('#category').jtable(
+	{
+		title : 'Categories',
+		paging : true, //Set paging enabled
+		pageSize: 10, //Set page size (default: 10)
+		sorting : true, //Enable sorting
+		defaultSorting : 'name', //Sort by  by default
+		selecting : true, //Enable selecting ** To create checkboxes next 2 options are needed ***
+		multiselect : true, //Allow multiple selecting
+		selectingCheckboxes : true, //Show checkboxes on first column
+		ajaxSettings :
+		{
+			type : 'GET',
+			dataType : 'json'
+		},
+
+		actions :
+		{
+			listAction : '/category/index',
+			createAction : '/category/create',
+			updateAction : '/category/update',
+			deleteAction : '/category/destroy'
+
+		},
+		fields :
+		{
+			id :
+			{
+				title : 'ID',
+				key : true,
+				list : true
+			},
+			name :
+			{
+				title : ' Name',
+				width : '10%'
+			}
+		},
+
+		toolbar :
+		{
+			items : [
+			{
+				//icon : '/images/excel.png',
+				text : 'Delete Selected Items',
+				cssClass : 'deleteButton',
+
+				click : function()
+				{
+					//perform your custom job...
+					var $selectedRows = $('#category').jtable('selectedRows');
+					$('#category').jtable('deleteRows', $selectedRows);
+				}
+			}]
+
+		},
+		//Register to selectionChanged event to hanlde events
+		selectionChanged : function()
+		{
+			//Get all selected rows
+			var $selectedRows = $('#category').jtable('selectedRows');
+			//alert($selectedRows.length);
+			$('#SelectedRowList').empty();
+			if ($selectedRows.length > 0)
+			{
+				$('#DeleteAllButton').show();
+				$('.deleteButton').show();
+
+			}
+			else
+			{
+
+				$('.deleteButton').hide();
+			}
+		},
+	});
+	$('.deleteButton').hide();
+	//$('#department').jtable('load');
+	
+	//Search 
+
+					//Re-load records when user click 'load records' button.
+				$('#LoadRecordsButton').click(function(e)
+				{
+					e.preventDefault();
+					$('#category').jtable('load',
+					{
+						name : $('#name').val(),
+						category_id : $('#category_id').val(),
+						
+					});
+				});
+
+				//Load all records when page is first shown
+				
+				$('#LoadRecordsButton').click();
+
+}

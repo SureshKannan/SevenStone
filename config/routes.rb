@@ -91,4 +91,11 @@ SevenStone::Application.routes.draw do
     get "priority/destroy"
   end
 
+  controller :category do
+    get "category/list"
+    get "category/index"
+    get "category/create"
+    get "category/update"
+    get "category/destroy"
+  end
 end
