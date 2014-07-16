@@ -1,1 +1,34 @@
-<h1>welcome to the new page</h1>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>New Type</title>
+		<script type="text/javascript">
+			  $(document).ready(function()
+			  {
+			  		$("#btnCancel").click(closeWindow);
+			  });
+			  function closeWindow()
+			  {
+			  		window.parent.closeWindow('r<%=@role.id%>');
+			  }
+		</script>
+	</head>
+	<body class="container-fluid">
+		<section class="row">
+			<%= form_for(@role, remote: true) do |p| %>
+			<label>Name</label>
+			<%= p.text_field :name, :placeholder=>'role', :size=> 50, :class=>"form-control", :required=> true, :autofocus=>true %>
+			<br>
+			<br>
+			<section id="tbar">
+	        <%= hidden_field_tag "mode", @mode %>
+	        <%= hidden_field_tag "page", @page %>
+			<%= p.submit :id=>"btnSave", :value=>"Save Changes", :class=>"btn btn-primary" %>
+			<%= p.submit :id=>"btnCancel",:value=>"Cancel", :type=>"reset",:class=>"btn btn-default" %>
+			</section>
+			<% end %>
+			<br>
+			<br>
+		</section>
+	</body>
+</html>

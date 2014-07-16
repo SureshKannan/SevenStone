@@ -21,7 +21,7 @@ class RolesController < ApplicationController
     end       
   end
   def new
-    
+    @role = Role.new
   end
   def create
     
