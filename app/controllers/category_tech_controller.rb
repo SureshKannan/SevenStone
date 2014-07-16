@@ -1,0 +1,2 @@
+class CategoryTechController < ApplicationController
+end
