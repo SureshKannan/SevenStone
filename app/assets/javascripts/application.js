@@ -16,3 +16,19 @@
 //= require respond
 //= require turbolinks
 //= require_tree .
+// 
+// function openNewWindow()
+// {
+	// alert('inside 1');
+	// $( "#dialog-form" ).dialog( "open" );
+	// alert('inside 2');
+    // page = $("#page").val();
+	// $("#newdialog").attr('src','<%=new_roles_url%>?mode=new&page='+page);
+	// alert('inside 3');
+// }			
+
+// function setMode(mode)
+// {
+	// alert('1');
+	// $('#mode').val(mode);
+// }

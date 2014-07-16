@@ -54,7 +54,8 @@ SevenStone::Application.routes.draw do
   #     resources :products
   #   end
   
-   
+  root "roles#index"
+  
   controller :login do
     get "login", to: "login#index"
     get "login/index"
@@ -67,6 +68,10 @@ SevenStone::Application.routes.draw do
   controller :role do
     get "roles", to: "roles#index"
     get "roles/index"
+    post "roles"
+    post "roles/index"
+    get "roles/new", as: "role"
+    
   end
 
 end
