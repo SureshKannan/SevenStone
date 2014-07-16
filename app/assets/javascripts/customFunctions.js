@@ -407,3 +407,105 @@ function createCategory()
 				$('#LoadRecordsButton').click();
 
 }
+
+function createEnterpriseApplication()
+{
+	//alert("Jtable");
+	$('#enterprise').jtable(
+	{
+		title : 'Applications',
+		paging : true, //Set paging enabled
+		pageSize: 10, //Set page size (default: 10)
+		sorting : true, //Enable sorting
+		defaultSorting : 'name', //Sort by  by default
+		selecting : true, //Enable selecting ** To create checkboxes next 2 options are needed ***
+		multiselect : true, //Allow multiple selecting
+		selectingCheckboxes : true, //Show checkboxes on first column
+		ajaxSettings :
+		{
+			type : 'GET',
+			dataType : 'json'
+		},
+
+		actions :
+		{
+			listAction : '/enterprise_application/index',
+			createAction : '/enterprise_application/create',
+			updateAction : '/enterprise_application/update',
+			deleteAction : '/enterprise_application/destroy'
+
+		},
+		fields :
+		{
+			id :
+			{
+				title : 'ID',
+				key : true,
+				list : true
+			},
+			name :
+			{
+				title : ' Name',
+				width : '10%'
+			}
+		},
+
+		toolbar :
+		{
+			items : [
+			{
+				//icon : '/images/excel.png',
+				text : 'Delete Selected Items',
+				cssClass : 'deleteButton',
+
+				click : function()
+				{
+					//perform your custom job...
+					var $selectedRows = $('#enterprise').jtable('selectedRows');
+					$('#enterprise').jtable('deleteRows', $selectedRows);
+				}
+			}]
+
+		},
+		//Register to selectionChanged event to hanlde events
+		selectionChanged : function()
+		{
+			//Get all selected rows
+			var $selectedRows = $('#enterprise').jtable('selectedRows');
+			//alert($selectedRows.length);
+			$('#SelectedRowList').empty();
+			if ($selectedRows.length > 0)
+			{
+				$('#DeleteAllButton').show();
+				$('.deleteButton').show();
+
+			}
+			else
+			{
+
+				$('.deleteButton').hide();
+			}
+		},
+	});
+	$('.deleteButton').hide();
+	//$('#department').jtable('load');
+	
+	//Search 
+
+					//Re-load records when user click 'load records' button.
+				$('#LoadRecordsButton').click(function(e)
+				{
+					e.preventDefault();
+					$('#enterprise').jtable('load',
+					{
+						name : $('#name').val(),
+						enterprise_id : $('#enterprise_id').val(),
+						
+					});
+				});
+
+				//Load all records when page is first shown
+				
+				$('#LoadRecordsButton').click();
+
+}

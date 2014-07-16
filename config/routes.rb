@@ -98,4 +98,12 @@ SevenStone::Application.routes.draw do
     get "category/update"
     get "category/destroy"
   end
+  
+    controller :enterprise_application do
+    get "enterprise_application/list"
+    get "enterprise_application/index"
+    get "enterprise_application/create"
+    get "enterprise_application/update"
+    get "enterprise_application/destroy"
+  end
 end
