@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140716132601) do
+ActiveRecord::Schema.define(version: 20140716154623) do
+
+  create_table "application_teches", force: true do |t|
+    t.integer  "tech_id"
+    t.integer  "application_id"
+    t.integer  "application_role"
+    t.integer  "order_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "attachments", force: true do |t|
     t.string   "path"
@@ -24,6 +33,15 @@ ActiveRecord::Schema.define(version: 20140716132601) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "category_teches", force: true do |t|
+    t.integer  "tech_id"
+    t.integer  "category_id"
+    t.integer  "category_role"
+    t.integer  "order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -62,6 +80,33 @@ ActiveRecord::Schema.define(version: 20140716132601) do
 
   create_table "statuses", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ticket_histories", force: true do |t|
+    t.integer  "ticket_id"
+    t.integer  "tech_id"
+    t.integer  "status_id"
+    t.integer  "priority_id"
+    t.string   "comment"
+    t.datetime "assigned_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tickets", force: true do |t|
+    t.integer  "category_id"
+    t.integer  "created_by"
+    t.integer  "department_id"
+    t.integer  "priority_id"
+    t.integer  "status_id"
+    t.integer  "current_tech_id"
+    t.integer  "application_id"
+    t.integer  "requested_by"
+    t.string   "short_description"
+    t.datetime "assigned_on"
+    t.datetime "completed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
