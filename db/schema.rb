@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715203136) do
+ActiveRecord::Schema.define(version: 20140716132601) do
+
+  create_table "attachments", force: true do |t|
+    t.string   "path"
+    t.string   "doctype"
+    t.integer  "serialnum"
+    t.integer  "ticket_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -20,6 +29,12 @@ ActiveRecord::Schema.define(version: 20140715203136) do
   end
 
   create_table "departments", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "enterprise_applications", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
