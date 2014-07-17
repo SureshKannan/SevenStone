@@ -68,7 +68,7 @@ SevenStone::Application.routes.draw do
   controller :role do
     get "roles", to: "roles#index"
     get "roles/index"
-    post "roles"
+    post "roles", to: "roles#create"
     post "roles/index"
     get "roles/new", as: "role"
     
