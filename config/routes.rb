@@ -57,12 +57,9 @@ SevenStone::Application.routes.draw do
   root "roles#index"
   
   controller :login do
-    get "login", to: "login#index"
-    get "login/index"
-    post "login/index", to: "login#signin"
-    get "login" 
-    
-    get "logins", to: "login#index"
+    get  "login", to: "login#index"
+    get  "login/index", to: "login#index"
+    post "login/index", to: "login#signin" 
     post "logins", to: "login#signin"
   end
   controller :role do
