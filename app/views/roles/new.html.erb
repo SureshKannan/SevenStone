@@ -23,7 +23,7 @@
 			<section id="tbar">
 	        <%= hidden_field_tag "mode", @mode %>
 	        <%= hidden_field_tag "page", @page %>
-			<%= p.submit :id=>"btnSave", :value=>"Save Changes", :class=>"btn btn-primary" %>
+			<%= p.submit :id=>"btnSave", :value=>"Save Changes", :class=>"btn btn-primary", :data => {"data-loading-text" => "Saving Changes..."}  %>
 			<%= p.submit :id=>"btnCancel",:value=>"Cancel", :type=>"reset",:class=>"btn btn-default" %>
 			</section>
 			<% end %>

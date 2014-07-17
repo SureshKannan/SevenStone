@@ -63,12 +63,11 @@ SevenStone::Application.routes.draw do
     post "logins", to: "login#signin"
   end
   controller :role do
-    get "roles", to: "roles#index"
-    get "roles/index"
+    get  "roles", to: "roles#index"
+    get  "roles/index"
     post "roles", to: "roles#create"
     post "roles/index"
-    get "roles/new", as: "role"
-    
+    get  "roles/new", as: "role"
+    post "roles/delete",to: "roles#delete"
   end
-
 end

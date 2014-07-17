@@ -29,15 +29,38 @@
 	  			try
 	  			{
 	  			  page = $("#page").val();
+	  			  alert(page);
 				  $("#newdialog").attr('src','<%=role_url%>?mode=new&page='+page);
 	  			  $('#myDialogBox').modal("show");
-	  			 // $("#dialog-form").dialog( "open" );
 				}
 				catch(err)
 				{
 					alert(err.description);
 				}
 	  		}	
+	  		function selectRows()
+			{
+				var selected = $("#selectAll").prop("checked");
+				if (selected)
+					$("input:checkbox").prop("checked",true);
+				else
+					$("input:checkbox").prop("checked",false);	
+			}
+	  		//updating the data
+			function updateData(mode,data,rowid)
+			{
+				if (mode=="new")
+				{
+					// $(".dataTable > tbody:last").append(data);
+					$("#roles").html(data);
+					$('.pagination a').attr('data-remote', 'true');
+				}
+				else
+				{
+				$("#" + rowid).replaceWith(data);
+				}
+
+			}
 	  		function closeWindow(id)
 			{
 				//$('#'+id).addClass('normalRow');		  			
@@ -87,7 +110,6 @@
 					      <div class="modal-header">
 					        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 					        <h5 class="modal-title" id="myModalLabel">New Role</h5>
-
 					      </div>
 					      <div class="modal-body">
 					        <iframe id="newdialog" name="newdialog" seamless="seamless" frameborder="0" height="100%" width="100%" scrolling="no"> 
