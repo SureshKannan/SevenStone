@@ -5,90 +5,27 @@
 		<script>
 			$(document).ready(function() 
 			{			
-					/* selecting the row */
-					// $('.dataTable input[type=checkbox]').click(function(event)
-					// {
-						// event.stopPropagation()
-					// });
-// 					
-					// $(document).on('dblclick','.dataTable tbody tr',openEditWindow);
-					// $('.pagination a').attr('data-remote', 'true');
-					// $( "#dialog-form" ).dialog({
-						// dialogClass: "no-close",
-				      	// autoOpen: false,
-				      	// height: 300,
-				      	// width: 500,
-				      	// modal: true,
-			    	// });			 
-				    // $("#btnClose").click(closeWindow);
-			 		// $('.ui-dialog-buttonpane').find('button').css('visibility','hidden');	
-					$("#idNew").click(openNewWindow);
+				$("#idNew").click(function() 
+				{
+					openNewWindow("<%=new_role_url%>");
+				});
+				$(document).on('dblclick','#dataTable tbody tr',function()
+																{ 
+																	openEditWindow("<%=roles_path%>",this.id);
+																});
+				
 			});
-			function openNewWindow()
-	  		{
-	  			try
-	  			{
-	  			  page = $("#page").val();
-	  			  alert(page);
-				  $("#newdialog").attr('src','<%=role_url%>?mode=new&page='+page);
-	  			  $('#myDialogBox').modal("show");
-				}
-				catch(err)
-				{
-					alert(err.description);
-				}
-	  		}	
-	  		function selectRows()
-			{
-				var selected = $("#selectAll").prop("checked");
-				if (selected)
-					$("input:checkbox").prop("checked",true);
-				else
-					$("input:checkbox").prop("checked",false);	
-			}
-	  		//updating the data
-			function updateData(mode,data,rowid)
-			{
-				if (mode=="new")
-				{
-					// $(".dataTable > tbody:last").append(data);
-					$("#roles").html(data);
-					$('.pagination a').attr('data-remote', 'true');
-				}
-				else
-				{
-				$("#" + rowid).replaceWith(data);
-				}
-
-			}
-	  		function closeWindow(id)
-			{
-				//$('#'+id).addClass('normalRow');		  			
-				$('#myDialogBox').modal("hide");
-			}
-	  		function setMode(mode)
-			{
-				$('#mode').val(mode);
-			}		
+	  		
+	  		
+	  			  		
 		</script>
 	</head>
 	<body class="container-fluid">
 		<header class="row top-buffer">
-			<div class="col-md-2 col-sm-2 col-md-offset-1 col-sm-offset-1">
+			<div class="col-md-2 col-sm-2">
 			<h4 class="glyphicon glyphicon-th-list"> Roles</h4>
 			</div>
-			<div class="col-md-2 col-sm-2">
-				<select class="form-control input-sm">
-				  <option>Id</option>
-				  <option>Name</option>
-				  <option>Created</option>
-				  <option>Modified</option>
-				</select>
-			</div>
-			<div class="col-md-2 col-sm-2">
-				<input type="text" id="idSearch" name="idSearch" class="form-control input-sm"/>
-			</div>
-			<div class="col-md-offset-4 col-sm-offset-4 col-md-1 col-sm-1">
+			<div class="col-md-offset-9 col-sm-offset-9 col-md-1 col-sm-1">
 				<button id="idNew" type="button" class="btn btn-primary glyphicon glyphicon-plus" onclick="setMode('new')"></button>
 			</div>
 		</header>

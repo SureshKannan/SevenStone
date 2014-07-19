@@ -67,7 +67,10 @@ SevenStone::Application.routes.draw do
     get  "roles/index"
     post "roles", to: "roles#create"
     post "roles/index"
-    get  "roles/new", as: "role"
+    get  "roles/new", as: "new_role"
     post "roles/delete",to: "roles#delete"
+    get 'roles/:id/edit' => 'roles#edit', as: :role
+    post 'roles/:id/edit' => 'roles#update'
+    patch 'roles/:id/edit' => 'roles#update'
   end
 end

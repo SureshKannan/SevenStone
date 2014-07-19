@@ -26,3 +26,14 @@
 .top-buffer {
 	margin-top: 1%;
 }
+
+
+.highlightRow {
+	background-color: yellow;
+	border:dotted 1px grey;
+}
+
+.normalRow {
+	background-color: white;
+	border-style: none;
+}

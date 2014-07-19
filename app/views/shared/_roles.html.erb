@@ -1,4 +1,4 @@
-<table class="table-condensed table-hover">
+<table id="dataTable" class="table-condensed table-hover">
 			<thead>
 				<tr>
 					<th style="width:1%"><input type="checkbox" id="selectAll" value='-1' onclick="selectRows();"/></th>
@@ -11,10 +11,10 @@
 			<thead>
 				<tr>
 					<th></th>
-					<th><input type="text" id="txtName" name="txtName" class="form-control-sm" value="<%=params[:txtName]%>" style="width:99%"/></th>
-					<th><input type="text" id="txtCreated" name="txtCreated" class="form-control-sm" value="<%=params[:txtCreated]%>" style="width:99%"/></th>
-					<th><input type="text" id="txtStatus" name="txtStatus" class="form-control-sm" value='<%=params[:txtStatus]%>' style="width:99%"/></th>
-					<th></th>
+					<th><input type="text" id="idName" name="txtName" class="form-control-sm" value="<%=params[:txtName]%>" style="width:99%"/></th>
+					<th><input type="text" id="idCreated" name="txtCreated" class="form-control-sm" value="<%=params[:txtCreated]%>" style="width:99%"/></th>
+					<th><input type="text" id="idStatus" name="txtStatus" class="form-control-sm" value='<%=params[:txtStatus]%>' style="width:99%"/></th>
+					<th><a id="idSearch" class="glyphicon glyphicon-search"></a></th>
 				</tr>
 			</thead>
 			<tbody>

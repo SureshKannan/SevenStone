@@ -17,18 +17,63 @@
 //= require turbolinks
 //= require_tree .
 // 
-// function openNewWindow()
-// {
-	// alert('inside 1');
-	// $( "#dialog-form" ).dialog( "open" );
-	// alert('inside 2');
-    // page = $("#page").val();
-	// $("#newdialog").attr('src','<%=new_roles_url%>?mode=new&page='+page);
-	// alert('inside 3');
-// }			
 
-// function setMode(mode)
-// {
-	// alert('1');
-	// $('#mode').val(mode);
-// }
+function openNewWindow(url)
+{
+	try
+	{
+	  page = $("#page").val();
+	  $("#newdialog").attr('src',url + '?mode=new&page='+page);
+	  $('#myDialogBox').modal("show");
+	}
+	catch(err)
+	{
+		alert(err.description);
+	}
+}	
+
+function selectRows()
+{
+	var selected = $("#selectAll").prop("checked");
+	if (selected)
+		$("input:checkbox").prop("checked",true);
+	else
+		$("input:checkbox").prop("checked",false);	
+}
+
+function closeWindow(id)
+{
+	$('#'+id).addClass('normalRow');		  			
+	$('#myDialogBox').modal("hide");
+}
+function setMode(mode)
+{
+	$('#mode').val(mode);
+}		
+
+function openEditWindow(url,id)
+{
+	if ($('#'+id).hasClass('highlightRow')==false)
+	$('#'+id).addClass('highlightRow');
+	id = id.replace('r','');
+	$("#newdialog").attr('src',url + '/'+id+'/edit?mode=edit');
+	$('#myDialogBox').modal("show");
+}
+
+//updating the data
+function updateData(mode,data,rowid)
+{
+	if (mode=="new")
+	{
+		// $(".dataTable > tbody:last").append(data);
+		$("#roles").html(data);
+		$('.pagination a').attr('data-remote', 'true');
+	}
+	else
+	{
+	$("#" + rowid).replaceWith(data);
+	}
+
+}
+
+	

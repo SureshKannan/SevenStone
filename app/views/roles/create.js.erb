@@ -11,32 +11,22 @@
 		try
 		{
 			str = " <tr id='r<%=@role.id%>'> " + 
-  			  	 " <td><input type='checkbox' id='c<%=@role.id%>' value='<%=@Category.id%>' name='ps[]'/></td> " +
-  			  	 " <td><%=@Category.name %></td> ";
-			<% if @Category.categorytype.present? %>
-				str += "<td><%=@Category.categorytype.name %></td> "; 
-	  		<% else %>
-				str += "<td>&nbsp;</td>";
+  			  	 " <td><input type='checkbox' id='c<%=@role.id%>' value='<%=@role.id%>' name='ps[]'/></td> " +
+  			  	 " <td><%=@role.name %></td> ";
+	  		<% if !@role.created_at.nil?  %>
+				str += "<td><%=@role.created_at.strftime('%Y-%m-%d')%></td>";
 	  		<% end %>
-	  	    <% if @Category.parent.present? %>
-				str += "<td><%=@Category.parent.name %></td>";
-	  		<% else %>
-				str += "<td>&nbsp;</td>";
-	  		<% end %>
-	  		<% if !@Category.created_at.nil?  %>
-				str += "<td><%=@Category.created_at.strftime('%Y-%m-%d')%></td>";
-	  		<% end %>
-	  		<% if @Category.status.nil? %>
+	  		<% if @role.status.nil? %>
 				str += "<td>Active</td>";
 	  		<% else %>
 	    		str += "<td>Inactive</td>";
 	  		<% end %>
 	  		str += "<td>";
-  			str += "<%=escape_javascript(link_to(image_tag('delete.png',:border=>0), {:action=>'delete',:id=> @Category.id,:page=>@page},:method=>:post, :remote=>true, :data=> { :confirm=>'Are you sure?' })) %>";
+  			str += "<%=escape_javascript(link_to(image_tag('delete.png',:border=>0), {:action=>'delete',:id=> @role.id,:page=>@page},:method=>:post, :remote=>true, :data=> { :confirm=>'Are you sure?' })) %>";
   			str += "</td>";
  			str += "</tr>";
- 			window.parent.updateData("edit",str,"r<%=@Category.id%>");
-			window.parent.closeWindow("r<%=@Category.id%>");
+ 			window.parent.updateData("edit",str,"r<%=@role.id%>");
+			window.parent.closeWindow("r<%=@role.id%>");
   		}
   		catch(err)
   		{

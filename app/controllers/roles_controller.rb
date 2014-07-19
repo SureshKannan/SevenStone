@@ -51,6 +51,20 @@ class RolesController < ApplicationController
       end
     end        
   end
+  def edit
+    @role = Role.find(params[:id])
+    @roles = Role.all
+    @mode = params[:mode]
+    render "new"
+  end
+  def update
+    @role = Role.find(params[:id])
+    @mode= params[:mode]
+    @role.update(role_params)
+    respond_to do |f|
+      f.js { render "create" }
+    end
+  end
   def deleteall
     @Cattypes= params[:ps] 
     @Cattypes.each { |f| 
