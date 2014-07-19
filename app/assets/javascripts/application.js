@@ -18,11 +18,12 @@
 //= require_tree .
 // 
 
-function openNewWindow(url)
+function openNewWindow(url,title)
 {
 	try
 	{
 	  page = $("#page").val();
+	  $("#myModalLabel").html("New " + title);
 	  $("#newdialog").attr('src',url + '?mode=new&page='+page);
 	  $('#myDialogBox').modal("show");
 	}
@@ -51,11 +52,12 @@ function setMode(mode)
 	$('#mode').val(mode);
 }		
 
-function openEditWindow(url,id)
+function openEditWindow(url,id,title)
 {
 	if ($('#'+id).hasClass('highlightRow')==false)
 	$('#'+id).addClass('highlightRow');
 	id = id.replace('r','');
+	$("#myModalLabel").html("Edit " + title);
 	$("#newdialog").attr('src',url + '/'+id+'/edit?mode=edit');
 	$('#myDialogBox').modal("show");
 }

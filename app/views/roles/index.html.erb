@@ -7,11 +7,11 @@
 			{			
 				$("#idNew").click(function() 
 				{
-					openNewWindow("<%=new_role_url%>");
+					openNewWindow("<%=new_role_url%>","Role");
 				});
 				$(document).on('dblclick','#dataTable tbody tr',function()
 																{ 
-																	openEditWindow("<%=roles_path%>",this.id);
+																	openEditWindow("<%=roles_path%>",this.id,"Role");
 																});
 				
 			});
@@ -46,7 +46,9 @@
 					    <div class="modal-content">
 					      <div class="modal-header">
 					        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					        <h5 class="modal-title" id="myModalLabel">New Role</h5>
+					        <h5 class="modal-title" id="myModalLabel">
+					        	Role
+					        </h5>
 					      </div>
 					      <div class="modal-body">
 					        <iframe id="newdialog" name="newdialog" seamless="seamless" frameborder="0" height="100%" width="100%" scrolling="no"> 
