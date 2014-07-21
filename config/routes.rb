@@ -73,4 +73,15 @@ SevenStone::Application.routes.draw do
     post 'roles/:id/edit' => 'roles#update'
     patch 'roles/:id/edit' => 'roles#update'
   end
+  controller :group do
+    get  "groups", to: "groups#index"
+    get  "groups/index"
+    post "groups", to: "groups#create"
+    post "groups/index"
+    get  "groups/new", as: "new_group"
+    post "groups/delete",to: "groups#delete"
+    get 'groups/:id/edit' => 'groups#edit', as: :group
+    post 'groups/:id/edit' => 'groups#update'
+    patch 'groups/:id/edit' => 'groups#update'
+  end
 end

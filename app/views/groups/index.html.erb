@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Groups</title>
+		<script>
+			$(document).ready(function() 
+			{			
+				$("#idNew").click(function() 
+				{
+					openNewWindow("<%=new_group_url%>","Group");
+				});
+				$(document).on('dblclick','#dataTable tbody tr',function()
+																{ 
+																	openEditWindow("<%=groups_path%>",this.id,"Group");
+																});
+				
+			});
+	  		
+	  		
+	  			  		
+		</script>
+	</head>
+	<body class="container-fluid">
+		<header class="row top-buffer">
+			<div class="col-md-2 col-sm-2">
+			<h4 class="glyphicon glyphicon-th-list"> Groups</h4>
+			</div>
+			<div class="col-md-offset-9 col-sm-offset-9 col-md-1 col-sm-1">
+				<button id="idNew" type="button" class="btn btn-primary glyphicon glyphicon-plus" onclick="setMode('new')"></button>
+			</div>
+		</header>
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<%= form_tag({:controller => 'groups',:action => "index"},:method=>:post, remote: true) do %>
+				<section id="tbar">
+					<input type="button" id="btnClose" value="Close" style='display:none;visibility: hidden'/>
+					<input type="text" id="page" name="page" value="<%=@page%>" style='display: none;visibility: hidden;'/>
+					<input type="text" id="mode" name="mode" value="<%=@mode%>" style='display: none;visibility: hidden'/>
+				</section>
+				<div id="groups">
+					<%= render :partial => 'shared/groups' %>
+				</div>
+				<!-- dialog start -->
+				<div class="modal fade" id="myDialogBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					        <h5 class="modal-title" id="myModalLabel">
+					        	Group
+					        </h5>
+					      </div>
+					      <div class="modal-body">
+					        <iframe id="newdialog" name="newdialog" seamless="seamless" frameborder="0" height="100%" width="100%" scrolling="no"> 
+							</iframe>
+					      </div>
+					      <!-- <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        <button type="button" class="btn btn-primary">Save changes</button>
+					      </div> -->
+					    </div>
+					  </div>
+				</div>
+				<!-- new dialog end -->
+				<% end %>
+				
+			</div>
+		</div>
+		<!-- start here 
+		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+		  Launch demo modal
+		</button>
+		-->
+		<!-- Modal -->
+		
+	</body>
+</html>

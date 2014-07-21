@@ -22,6 +22,8 @@ function openNewWindow(url,title)
 {
 	try
 	{
+		alert(url);
+		
 	  page = $("#page").val();
 	  $("#myModalLabel").html("New " + title);
 	  $("#newdialog").attr('src',url + '?mode=new&page='+page);
@@ -63,13 +65,20 @@ function openEditWindow(url,id,title)
 }
 
 //updating the data
-function updateData(mode,data,rowid)
+function updateData(mode,data,rowid,id)
 {
 	if (mode=="new")
 	{
+		try
+		{
 		// $(".dataTable > tbody:last").append(data);
-		$("#roles").html(data);
+		$("#" + id).html(data);
 		$('.pagination a').attr('data-remote', 'true');
+		}
+		catch(err)
+  		{
+  			alert("error" + err.message);
+  		}
 	}
 	else
 	{

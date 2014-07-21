@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>New Group</title>
+		<script type="text/javascript">
+			  $(document).ready(function()
+			  {
+			  		$("#btnCancel").click(closeWindow);
+			  });
+			  function closeWindow()
+			  {
+			  		window.parent.closeWindow('r<%=@group.id%>');
+			  }
+		</script>
+	</head>
+	<body class="container-fluid">
+		<section class="row">
+			<%= form_for(@group, remote: true) do |p| %>
+			<label>Name</label>
+			<%= p.text_field :name, :placeholder=>'group', :size=> 50, :class=>"form-control", :required=> true, :autofocus=>true %>
+			<br>
+			<br>
+			<section id="tbar">
+	        <%= hidden_field_tag "mode", @mode %>
+	        <%= hidden_field_tag "page", @page %>
+			<%= p.submit :id=>"btnSave", :value=>"Save Changes", :class=>"btn btn-primary", :data => {"data-loading-text" => "Saving Changes..."}  %>
+			<%= p.submit :id=>"btnCancel",:value=>"Cancel", :type=>"reset",:class=>"btn btn-default" %>
+			</section>
+			<% end %>
+			<br>
+			<br>
+		</section>
+	</body>
+</html>

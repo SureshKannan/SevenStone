@@ -1,7 +1,7 @@
 <% begin %>
 	<% if @mode=="new"%>
 		<% if (@role.new_record? == false) %>	
-			window.parent.updateData("new","<%=escape_javascript(render(:partial => "shared/roles"))%>","0");
+			window.parent.updateData("new","<%=escape_javascript(render(:partial => "shared/roles"))%>","0","roles");
 			$("#role_name").val("");
 			$("#role_name").focus();
 		<% else %>
@@ -25,7 +25,7 @@
   			str += "<%=escape_javascript(link_to(image_tag('delete.png',:border=>0), {:action=>'delete',:id=> @role.id,:page=>@page},:method=>:post, :remote=>true, :data=> { :confirm=>'Are you sure?' })) %>";
   			str += "</td>";
  			str += "</tr>";
- 			window.parent.updateData("edit",str,"r<%=@role.id%>");
+ 			window.parent.updateData("edit",str,"r<%=@role.id%>","roles");
 			window.parent.closeWindow("r<%=@role.id%>");
   		}
   		catch(err)
