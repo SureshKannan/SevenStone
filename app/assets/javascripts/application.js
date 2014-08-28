@@ -21,9 +21,7 @@
 function openNewWindow(url,title)
 {
 	try
-	{
-		alert(url);
-		
+	{	
 	  page = $("#page").val();
 	  $("#myModalLabel").html("New " + title);
 	  $("#newdialog").attr('src',url + '?mode=new&page='+page);

@@ -84,4 +84,15 @@ SevenStone::Application.routes.draw do
     post 'groups/:id/edit' => 'groups#update'
     patch 'groups/:id/edit' => 'groups#update'
   end
+  controller :user do
+    get  "users", to: "users#index"
+    get  "users/index"
+    post "users", to: "users#create"
+    post "users/index"
+    get  "users/new", as: "new_user"
+    post "users/delete",to: "users#delete"
+    get 'users/:id/edit' => 'users#edit', as: :user
+    post 'users/:id/edit' => 'users#update'
+    patch 'users/:id/edit' => 'users#update'
+  end
 end

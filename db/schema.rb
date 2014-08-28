@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140712233707) do
+ActiveRecord::Schema.define(version: 20140723020226) do
 
   create_table "groups", force: true do |t|
     t.string   "name",       limit: 100, null: false
@@ -30,11 +30,15 @@ ActiveRecord::Schema.define(version: 20140712233707) do
   create_table "users", force: true do |t|
     t.string   "firstname",  limit: 100, null: false
     t.string   "lastname",   limit: 100, null: false
-    t.string   "status",     limit: 1
-    t.integer  "group_id"
+    t.string   "email",      limit: 150, null: false
     t.integer  "role_id"
+    t.integer  "group_id"
+    t.string   "status",     limit: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["group_id"], name: "index_users_on_group_id", using: :btree
+  add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
 end

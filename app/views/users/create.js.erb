@@ -1,0 +1,65 @@
+<% begin %>
+	<% if @mode=="new"%>
+		try
+		{
+			<% if (@user.new_record? == false) %>	
+				window.parent.updateData("new","<%=escape_javascript(render(:partial => "shared/users"))%>","0","users");
+				<!-- $("#user_first").val("");
+				$("#txtFirstName").val("");
+				$("#txtFirstName").focus();
+				 -->
+				
+				
+			<% else %>
+				alert('Error creating user!');
+			<% end %>
+			
+		}
+  		catch(err)
+  		{
+  			alert("error" + err.message);
+  		}		
+	<% else %>
+		try
+		{
+			str = " <tr id='r<%=@user.id%>'> " + 
+  			  	 " <td><input type='checkbox' id='c<%=@user.id%>' value='<%=@user.id%>' name='ps[]'/></td> " +
+  			  	 " <td><%=@user.firstname %></td> " +
+  			  	 " <td><%=@user.lastname %></td>";
+  			<% if @user.role.present? %>
+				str += "<td><%=@user.role.name %></td> "; 
+	  		<% else %>
+				str += "<td>&nbsp;</td>";
+	  		<% end %>
+  			<% if @user.group.present? %>
+				str += "<td><%=@user.group.name %></td> "; 
+	  		<% else %>
+				str += "<td>&nbsp;</td>";
+	  		<% end %>
+	  		  			  	 
+	  		<% if !@user.created_at.nil?  %>
+				str += "<td><%=@user.created_at.strftime('%Y-%m-%d')%></td>";
+	  		<% end %>
+	  		<% if @user.status.nil? %>
+				str += "<td>Active</td>";
+	  		<% else %>
+	    		str += "<td>Inactive</td>";
+	  		<% end %>
+	  		str += "<td>";
+  			str += "<%=escape_javascript(link_to(image_tag('delete.png',:border=>0), {:action=>'delete',:id=> @user.id,:page=>@page},:method=>:post, :remote=>true, :data=> { :confirm=>'Are you sure?' })) %>";
+  			str += "</td>";
+ 			str += "</tr>";
+ 			window.parent.updateData("edit",str,"r<%=@user.id%>","users");
+			window.parent.closeWindow("r<%=@user.id%>");
+  		}
+  		catch(err)
+  		{
+  			alert("error" + err.message);
+  		}
+	<% end %>
+<% rescue Exception => e %>
+	alert("<%=e.message%>");
+	<% puts "error in rescue"%>
+	<% puts e.message %>
+<% end %>
+

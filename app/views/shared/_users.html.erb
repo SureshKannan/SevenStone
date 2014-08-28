@@ -1,0 +1,66 @@
+<table id="dataTable" class="table-condensed table-hover">
+			<thead>
+				<tr>
+					<th style="width:1%"><input type="checkbox" id="selectAll" value='-1' onclick="selectRows();"/></th>
+					<th style="width:25%">First Name</th>
+					<th style="width:25%">Last Name</th>
+					<th style="width:15%">Role</th>
+					<th style="width:15%">Group</th>
+					<th style="width:8%">Created</th>
+					<th style="width:5%">Status</th>
+					<th style="width:2%"></th>
+				</tr>
+			</thead>
+			<thead>
+				<tr>
+					<th></th>
+					<th><input type="text" id="idFirstName" name="txtFirstName" class="form-control-sm" value="<%=params[:txtFirstName]%>" style="width:99%"/></th>
+					<th><input type="text" id="idLastName" name="txtLastName" class="form-control-sm" value="<%=params[:txtFirstName]%>" style="width:99%"/></th>
+					<th><input type="text" id="idRole" name="txtRole" class="form-control-sm" value="<%=params[:txtFirstName]%>" style="width:99%"/></th>
+					<th><input type="text" id="idGroup" name="txtGroup" class="form-control-sm" value="<%=params[:txtFirstName]%>" style="width:99%"/></th>
+					<th><input type="text" id="idCreated" name="txtCreated" class="form-control-sm" value="<%=params[:txtCreated]%>" style="width:99%"/></th>
+					<th><input type="text" id="idStatus" name="txtStatus" class="form-control-sm" value='<%=params[:txtStatus]%>' style="width:99%"/></th>
+					<th><a id="idSearch" class="glyphicon glyphicon-search"></a></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @users.each do |c| %>
+				<tr id="r<%=c.id%>">
+					<td><input type="checkbox" id="c<%=c.id%>" value='<%=c.id%>' name="ps[]"/></td>
+					<td><%=c.firstname %></td>
+					<td><%=c.lastname %></td>
+					<% if c.role.present? %>
+						<td><%=c.role.name %></td>
+					<% else %>
+						<td>&nbsp;</td>
+					<% end %>
+					<% if c.group.present? %>
+						<td><%=c.group.name %></td>
+					<% else %>
+						<td>&nbsp;</td>
+					<% end %>
+					<td><% if !c.created_at.nil?  %>
+						<%=c.created_at.strftime('%Y-%m-%d')%>
+						<% end %>
+					</td>
+					<% if c.status.nil? %>
+					<td>Active</td>
+					<% else %>
+					<td>Inactive</td>
+					<% end %>
+					<td><%=link_to(image_tag('delete.png',:border=>0), {:action=>'delete',:id=> c.id,:page=>@page},:method=>:post, :remote=>true, :data=> { :confirm=>'Are you sure?' })%></td>
+				</tr>
+				<% end %>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="3">
+							<%= will_paginate(@users, :params => { :controller => "roles", :action => "index",:mode=>@mode}, remote: true) %>
+						<!-- <%= will_paginate @Categorytypes, remote: true %> -->
+					</td>
+					<td colspan="2">
+						<%=@users.total_entries%> Records 
+					</td>
+				</tr>
+			</tfoot>
+		</table>

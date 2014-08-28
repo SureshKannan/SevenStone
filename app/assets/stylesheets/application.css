@@ -37,3 +37,7 @@
 	background-color: white;
 	border-style: none;
 }
+
+.modalHeight {
+    /*min-height:300px;*/
+}
