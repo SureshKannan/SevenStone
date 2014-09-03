@@ -24,7 +24,8 @@ class EnterpriseApplicationController < ApplicationController
 
   def create
     @enterpriseApplication = EnterpriseApplication.new
-    @enterpriseApplication.name= params['name']
+  
+     @enterpriseApplication.name= params['name']
     if @enterpriseApplication.save
       render json:{:Result => "OK", :Record => @enterpriseApplication}
     else
@@ -54,7 +55,7 @@ class EnterpriseApplicationController < ApplicationController
   def set_enterpriseApplication
     @enterpriseApplication = EnterpriseApplication.find(params[:id])
   end
-  
+
   def search
 
     query = ""
