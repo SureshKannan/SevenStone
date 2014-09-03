@@ -1,5 +1,5 @@
 SevenStone::Application.routes.draw do
-  get "admin/index"
+ 
 # The priority is based upon order of creation: first created -> highest priority.
 # See how all your routes lay out with "rake routes".
 
@@ -123,7 +123,7 @@ SevenStone::Application.routes.draw do
   end
   controller :admin do
     get "admin/index"
-    get "admin/index1"
+    
   end
     controller :ticket do
     get "roles/list"
@@ -141,7 +141,7 @@ SevenStone::Application.routes.draw do
     get "users/roleOption"
     get "users/groupOption"
   end
-        controller :groups do
+      controller :groups do
     get "groups/list"
     get "groups/index"
     get "groups/create"
@@ -149,4 +149,8 @@ SevenStone::Application.routes.draw do
     get "groups/destroy"
     
   end
+    controller :ticket_history do
+      get "ticket_history/index"
+      get "ticket_history/list"
+    end
 end

@@ -1,5 +1,6 @@
 class TicketController < ApplicationController
   before_action :set_ticket, only: [:update, :destroy]
+  before_action :bind_model, only: [:update]
  def list
    
  end
@@ -36,7 +37,7 @@ class TicketController < ApplicationController
   end
 
   def update
-    @ticket.name = params[:name]
+    #bind_model
     if @ticket.save
       render json:{:Result => "OK", :Record => @ticket}
     else
@@ -46,6 +47,7 @@ class TicketController < ApplicationController
 
   def destroy
     if @ticket.destroy
+      
       render json: {:Result => "OK"}
     else
       render json:{:Result => "ERROR", :Message => @ticket.errors.full_messages}

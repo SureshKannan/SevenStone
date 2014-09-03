@@ -521,8 +521,8 @@ function createTicket()
 		//sorting : true, //Enable sorting
 		//defaultSorting : 'name', //Sort by  by default
 		selecting : true, //Enable selecting ** To create checkboxes next 2 options are needed ***
-		multiselect : true, //Allow multiple selecting
-		selectingCheckboxes : true, //Show checkboxes on first column
+		//multiselect : true, //Allow multiple selecting
+		//selectingCheckboxes : true, //Show checkboxes on first column
 		ajaxSettings :
 		{
 			type : 'GET',
@@ -593,24 +593,28 @@ function createTicket()
 			}]
 
 		},
+		
+		   // recordsLoaded: function (event, data) {
+            // $('#ticket tbody tr').each(function () {
+                // $(this).click(ticketHistory);
+            // });
+        // }
+//         
+		
+		
+		
 		//Register to selectionChanged event to hanlde events
 		selectionChanged : function()
 		{
 			//Get all selected rows
 			var $selectedRows = $('#ticket').jtable('selectedRows');
-			//alert($selectedRows.length);
-			$('#SelectedRowList').empty();
-			if ($selectedRows.length > 0)
-			{
-				$('#DeleteAllButton').show();
-				$('.deleteButton').show();
-
-			}
-			else
-			{
-
-				$('.deleteButton').hide();
-			}
+			$selectedRows.each(function () {
+    var record = $(this).data('record');
+    var ticketId = record.id;
+    alert(ticketId);
+    ticketHistory(ticketId);
+});
+			
 		},
 	});
 	$('.deleteButton').hide();
@@ -635,7 +639,47 @@ function createTicket()
 				$('#LoadRecordsButton').click();
 
 }
-
+function ticketHistory(ID){
+	//alert("IdD" + ID);
+	var ticHistory = 
+	{
+		title : 'History',
+		 paging : true,
+		 sorting : true,
+		 defaultSorting : 'id',
+		ajaxSettings :
+		{
+			type : 'GET',
+			dataType : 'json'
+		},
+		actions :
+		{			
+			listAction : '/ticket_history/index'
+		},
+		fields :
+		{
+			id : {title : 'ID'},
+			ticket_id : {title : 'Ticket id'}
+		}
+		
+	};
+	//alert("after jtable");
+	
+	//$('#ticket').jtable('destroy');
+	// $('#filter').hide();
+	$('#historyDialog').dialog({
+		width: 600,
+		modal: true,
+		position: {
+			at: "",
+			my: ""
+		}
+		
+	});
+	$('#ticketHistory').jtable(ticHistory);
+	$('#ticketHistory').jtable('load');
+	//alert("after before");
+}
 function createRole()
 
 {
