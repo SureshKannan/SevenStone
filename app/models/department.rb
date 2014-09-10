@@ -4,5 +4,5 @@ class Department < ActiveRecord::Base
 
   scope :pageDepartment, ->(pageSize,startIndex,orderBy) {Department.limit(pageSize).offset(startIndex).order(orderBy)}
   
-  belongs_to :ticket
+  has_many :tickets
 end

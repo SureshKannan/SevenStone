@@ -4,6 +4,6 @@ class EnterpriseApplication < ActiveRecord::Base
 
   scope :pageEnterpriseApplication, ->(pageSize,startIndex,orderBy) {EnterpriseApplication.limit(pageSize).offset(startIndex).order(orderBy)}
 
-  belongs_to :ticket
+  has_many :ticket
   
 end

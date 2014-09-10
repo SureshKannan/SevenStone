@@ -640,7 +640,7 @@ function createTicket()
 
 }
 function ticketHistory(ID){
-	//alert("IdD" + ID);
+	alert("IdD" + ID);
 	var ticHistory = 
 	{
 		title : 'History',
@@ -649,8 +649,11 @@ function ticketHistory(ID){
 		 defaultSorting : 'id',
 		ajaxSettings :
 		{
-			type : 'GET',
-			dataType : 'json'
+			//url: '/ticket_history/index',
+			//url: '/ticket_history/index?jtStartIndex=' + jtParams.jtStartIndex + '&jtPageSize=' + jtParams.jtPageSize + '&jtSorting=' + jtParams.jtSorting + '&id= + ID',
+			type : 'get',
+			dataType : 'json',
+			data : {id: ID}
 		},
 		actions :
 		{			
