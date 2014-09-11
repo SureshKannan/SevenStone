@@ -4,5 +4,5 @@ class Category < ActiveRecord::Base
 
   scope :pageCategory, ->(pageSize,startIndex,orderBy) {Category.limit(pageSize).offset(startIndex).order(orderBy)}
   
-  belongs_to :ticket
+  has_many :ticket
 end

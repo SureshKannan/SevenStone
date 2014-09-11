@@ -4,5 +4,5 @@ class Status < ActiveRecord::Base
 
   scope :pageStatus, ->(pageSize,startIndex,orderBy) {Status.limit(pageSize).offset(startIndex).order(orderBy)}
   
-  belongs_to :ticket
+  has_many :ticket
 end

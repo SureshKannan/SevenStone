@@ -1,6 +1,8 @@
 class TicketController < ApplicationController
   before_action :set_ticket, only: [:update, :destroy]
+  before_action :createHistory, only: [:update]
   before_action :bind_model, only: [:update]
+  
  def list
    
  end
@@ -22,6 +24,7 @@ class TicketController < ApplicationController
     #@tickets = Ticket.all
     #totalTicket = @tickets.count
     render json:{:Result => "OK", :Records => @pageTicket, :TotalRecordCount => totalTickets}
+    
   end
 
   def create
@@ -101,10 +104,15 @@ class TicketController < ApplicationController
     @ticket.priority_id= params['priority_id']
     @ticket.status_id= params['status_id']
     @ticket.application_id= params['application_id']
+    @ticket.short_description= params['short_description']
   end
-#   
-  # def getDepartment
-    # @department_ids = Deaprtment.all
-    # render json:{:Result => "OK", :Records => @department_ids}
-  # end
+def createHistory
+  @history = TicketHistory.new
+  logger.debug "**Ticket #{@ticket.id}  *************"
+  @history.ticket_id = @ticket.id
+  @history.comment = @ticket.short_description
+  
+  @history.save
+  logger.debug "**TicketHistory #{@history.id}  *************"
+end
 end

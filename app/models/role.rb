@@ -3,6 +3,6 @@ class Role < ActiveRecord::Base
   validates :name, presence: true
 
   scope :pageRole, ->(pageSize,startIndex,orderBy) {Role.limit(pageSize).offset(startIndex).order(orderBy)}
-  has_one :user
+  belongs_to :user
 
 end

@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
    scope :pageUser, ->(pageSize,startIndex,orderBy) {User.limit(pageSize).offset(startIndex).order(orderBy)}
   
   
-  belongs_to :role
+  has_many :role
   belongs_to :group
   
-  belongs_to :ticket
+  has_many :ticket
 end
