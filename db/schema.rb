@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723020226) do
+ActiveRecord::Schema.define(version: 20140911015611) do
 
   create_table "groups", force: true do |t|
     t.string   "name",       limit: 100, null: false
@@ -37,8 +37,5 @@ ActiveRecord::Schema.define(version: 20140723020226) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "users", ["group_id"], name: "index_users_on_group_id", using: :btree
-  add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
 end

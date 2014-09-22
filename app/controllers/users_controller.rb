@@ -56,6 +56,8 @@ def index
   def edit
     @user = User.find(params[:id])
     @users = User.all
+    @roles = Role.all
+    @groups = Group.all
     @mode = params[:mode]
     render "new"
   end
@@ -77,6 +79,6 @@ def index
   end
   private
     def user_params
-      params.require(:user).permit(:id,:firstname,:lastname,:email,:mode)
+      params.require(:user).permit(:id,:firstname,:lastname,:email,:role_id,:group_id,:mode)
     end
 end

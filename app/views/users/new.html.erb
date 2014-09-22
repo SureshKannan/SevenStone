@@ -17,55 +17,40 @@
 			<%= form_for(@user, remote: true,:html=>{:class=>"form-horizontal",:role=>"form"}) do |p| %>
 
 			<div class="row">	
-					<div class="col-xs-3">
-					<label class="control-label" for="idFirstName">First Name</label>
-					</div>
-					<div class="col-xs-9">
-					<%= p.text_field :firstname,:id=>"idFirstName", :placeholder=>'first name', :size=> 50, :class=>"form-control",:required=> true, :autofocus=>true %>
+					<div class="col-xs-12">
+					<%= p.text_field :firstname,:id=>"idFirstName", :placeholder=>'First name', :size=> 50, :class=>"form-control",:required=> true, :autofocus=>true %>
 					</div>
 			</div>
 			<section class="row">
-					<div class="col-xs-3">
-					<label class="control-label" for="idLastName">Last Name</label>
-					</div>
-					<div class="col-xs-9">
-					<%= p.text_field :lastname, :placeholder=>'last name', :size=> 50, :class=>"form-control", :required=> true %>
+					<div class="col-xs-12">
+					<%= p.text_field :lastname, :placeholder=>'Last name', :size=> 50, :class=>"form-control", :required=> true %>
 					</div>
 			</section>
 			<section class="row">
-					<div class="col-xs-3">
-					<label class="control-label" id="idEmail">Email</label>
-					</div>
-					<div class="col-xs-9">
-					<%= p.text_field :email, :placeholder=>'email', :size=> 50, :class=>"form-control", :required=> true %>
+					<div class="col-xs-12">
+					<%= p.text_field :email, :placeholder=>'Email', :size=> 50, :class=>"form-control", :required=> true %>
 					</div>
 			</section>
 			<section class="row">
-					<div class="col-xs-3">
-					<label class="control-label" id="idRole">Role</label>
-					</div>
-					<div class="col-xs-9">
+					<div class="col-xs-12">
 						<% if @mode == "new" %>
-						<%= collection_select("role","role_id",@roles,:id,:name,{ :prompt=>'Select role'},{:class=>"form-control",:required=>true})%>
+						<%= collection_select("user","role_id",@roles,:id,:name,{ :prompt=>'Select role'},{:class=>"form-control",:required=>true})%>
 						<% else %>
-						<%= collection_select("role","role_id",@roles,:id,:name,{:include_blank=>'Select role', :selected=>@user.role.id},{:class=>"form-control",:required=>true})%>
+						<%= collection_select("user","role_id",@roles,:id,:name,{:include_blank=>'Select role', :selected=>@user.role.id},{:class=>"form-control",:required=>true})%>
 						<% end %>
 					</div>
 			</section>
 			<section class="row">
-					<div class="col-xs-3">
-					<label class="control-label" id="idGroup">Group</label>
-					</div>
-					<div class="col-xs-9">
+					<div class="col-xs-12">
 					<% if @mode == "new" %>
-					<%= collection_select("group","group_id",@groups,:id,:name,{ :prompt=>'Select group'},{:class=>"form-control",:required=>true})%>
+					<%= collection_select("user","group_id",@groups,:id,:name,{ :prompt=>'Select group'},{:class=>"form-control",:required=>true})%>
 					<% else %>
-					<%= collection_select("group","group_id",@groups,:id,:name,{:include_blank=>'Select group', :selected=>@user.group.id},{:class=>"form-control",:required=>true})%>
+					<%= collection_select("user","group_id",@groups,:id,:name,{:include_blank=>'Select group', :selected=>@user.group.id},{:class=>"form-control",:required=>true})%>
 					<% end %>
 					</div>
 			</section>
 			<br/>
-			<br />
+			<br/>
 					<section id="tbar">
 			        <%= hidden_field_tag "mode", @mode %>
 			        <%= hidden_field_tag "page", @page %>
